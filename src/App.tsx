@@ -29,6 +29,7 @@ const App = () => {
   const [text, setText] = useState("")
   const [todos, setTodos] = useState<Todo[]>([])
   const [filter, setFilter] = useState<Filter>("all")
+  const [drawerOpen, setDrawerOpen] = useState(false)
 
   const handleTodo = <
     T extends Todo,
@@ -77,11 +78,17 @@ const App = () => {
     setFilter(filter)
   }
 
+  const handleToggleDrawer = () => setDrawerOpen(!drawerOpen)
+
   return (
     <ThemeProvider theme={theme}>
       <GlobalStyles styles={{ body: {margin: 0, padding: 0}}} />
-      <ToolBar filter={filter}/>
-      <SideBar onSort={handleSort} />
+      <ToolBar filter={filter} onToggleDrawer={handleToggleDrawer} />
+      <SideBar
+        drawerOpen={drawerOpen}
+        onToggleDrawer={handleToggleDrawer}
+        onSort={handleSort}
+      />
       <FormDialog
         text={text}
         onChange={handleChange}
