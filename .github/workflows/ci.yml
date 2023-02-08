@@ -18,5 +18,9 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node-version }}
-      - run: npm ci
-      - run: npm run lint
+      - name: Dependencies installation
+        run: npm ci
+      - name: Lint/Format
+        run: npm run lint
+      - name: Unit test
+        run: npm test
