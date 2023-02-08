@@ -24,7 +24,8 @@ export const FormDialog = (props: Props) => {
       >
         <div style={{ margin: '1em' }}>
           <TextField
-            variant='standard'
+            aria-label="todo-input"
+            variant="standard"
             style={{
               width: '100%',
               fontSize: '16px',
@@ -37,7 +38,11 @@ export const FormDialog = (props: Props) => {
             autoFocus
           />
           <DialogActions>
-            <Button color='secondary' onClick={props.onSubmit}>
+            <Button
+              color="secondary"
+              onClick={props.onSubmit}
+              aria-label="form-add"
+            >
               追加
             </Button>
           </DialogActions>
