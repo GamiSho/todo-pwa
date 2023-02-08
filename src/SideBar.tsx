@@ -14,14 +14,14 @@ import { indigo, lightBlue, pink } from '@mui/material/colors'
 import pjson from '../package.json'
 
 type Props = {
-  drawerOpen: boolean,
-  onToggleQR: () => void,
-  onToggleDrawer: () => void,
+  drawerOpen: boolean
+  onToggleQR: () => void
+  onToggleDrawer: () => void
   onSort: (filter: Filter) => void
 }
 
 const DrawerList = styled('div')(() => ({
-  width: 250
+  width: 250,
 }))
 
 const DrawerHeader = styled('div')(() => ({
@@ -36,7 +36,7 @@ const DrawerHeader = styled('div')(() => ({
   fontFamily: '-apple-system, BlinkMacSystemFont, Roboto, sans-serif',
 }))
 
-const DrawerAvatar = styled(Avatar)(( { theme }) => ({
+const DrawerAvatar = styled(Avatar)(({ theme }) => ({
   backgroundColor: pink[500],
   width: theme.spacing(6),
   height: theme.spacing(6),
@@ -45,11 +45,11 @@ const DrawerAvatar = styled(Avatar)(( { theme }) => ({
 export const SideBar = (props: Props) => {
   return (
     <Drawer
-      variant='temporary'
+      variant="temporary"
       open={props.drawerOpen}
       onClose={props.onToggleDrawer}
     >
-      <DrawerList role='presentation' onClick={props.onToggleDrawer}>
+      <DrawerList role="presentation" onClick={props.onToggleDrawer}>
         <DrawerHeader>
           <DrawerAvatar>
             <Icon>create</Icon>
@@ -58,46 +58,58 @@ export const SideBar = (props: Props) => {
         </DrawerHeader>
         <List>
           <ListItem disablePadding>
-            <ListItemButton onClick={() => props.onSort('all')}>
+            <ListItemButton
+              onClick={() => props.onSort('all')}
+              aria-label="list-all"
+            >
               <ListItemIcon>
                 <Icon>subject</Icon>
               </ListItemIcon>
-              <ListItemText secondary='すべてのタスク' />
+              <ListItemText secondary="すべてのタスク" />
             </ListItemButton>
           </ListItem>
           <ListItem disablePadding>
-            <ListItemButton onClick={() => props.onSort('unchecked')}>
+            <ListItemButton
+              onClick={() => props.onSort('unchecked')}
+              aria-label="list-unchecked"
+            >
               <ListItemIcon>
                 <Icon sx={{ color: lightBlue[500] }}>
                   radio_button_unchecked
                 </Icon>
               </ListItemIcon>
-              <ListItemText secondary='現在のタスク' />
+              <ListItemText secondary="現在のタスク" />
             </ListItemButton>
           </ListItem>
           <ListItem disablePadding>
-            <ListItemButton onClick={() => props.onSort('checked')}>
+            <ListItemButton
+              onClick={() => props.onSort('checked')}
+              aria-label="list-checked"
+            >
               <ListItemIcon>
                 <Icon sx={{ color: pink.A200 }}>check_circle_outline</Icon>
               </ListItemIcon>
-              <ListItemText secondary='完了したタスク' />
+              <ListItemText secondary="完了したタスク" />
             </ListItemButton>
           </ListItem>
           <ListItem disablePadding>
-            <ListItemButton onClick={() => props.onSort('removed')}>
+            <ListItemButton
+              onClick={() => props.onSort('removed')}
+              aria-label="list-removed"
+            >
               <ListItemIcon>
                 <Icon>delete</Icon>
               </ListItemIcon>
-              <ListItemText secondary='ごみ箱' />
+              <ListItemText secondary="ごみ箱" />
             </ListItemButton>
           </ListItem>
           <Divider />
           <ListItem disablePadding>
-            <ListItemButton onClick={props.onToggleQR}>
+            <ListItemButton onClick={props.onToggleQR} aria-label="list-share">
               <ListItemIcon>
                 <Icon>share</Icon>
               </ListItemIcon>
-              <ListItemText secondary='このアプリを共有' />
+              <ListItemText secondary="このアプリを共有" />
             </ListItemButton>
           </ListItem>
         </List>
