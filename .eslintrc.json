@@ -1,0 +1,20 @@
+{
+  "settings": {
+    "react": {
+      "version": "detect"
+    }
+  },
+  "extends": [
+    "eslint:recommended",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:react/recommended",
+    "plugin:react-hooks/recommended",
+    "prettier"
+  ],
+  "rules": {
+    // TS では props の型定義が必須なので不要
+    "react/prop-types": "off",
+    // "tsconfig.json" で '"jsx": "react-jsx"' の場合は不要
+    "react/react-in-jsx-scope": "off"
+  }
+}
