@@ -31,6 +31,7 @@ const App = () => {
   const [text, setText] = useState('')
   const [todos, setTodos] = useState<Todo[]>([])
   const [filter, setFilter] = useState<Filter>('all')
+
   const [drawerOpen, setDrawerOpen] = useState(false)
   const [qrOpen, setQrOpen] = useState(false)
   const [dialogOpen, setDialogOpen] = useState(false)
@@ -124,7 +125,14 @@ const App = () => {
         onEmpty={handleEmpty}
       />
       <TodoItem todos={todos} filter={filter} onTodo={handleTodo} />
-      <ActionButton todos={todos} onEmpty={handleEmpty} />
+      <ActionButton
+        todos={todos}
+        filter={filter}
+        alertOpen={alertOpen}
+        dialogOpen={dialogOpen}
+        onToggleAlert={handleToggleAlert}
+        onToggleDialog={handleToggleDialog}
+      />
     </ThemeProvider>
   )
 }
