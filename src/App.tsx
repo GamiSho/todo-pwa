@@ -10,6 +10,7 @@ import { TodoItem } from './TodoItem'
 import { FormDialog } from './FormDialog'
 import { ActionButton } from './ActionButton'
 import { QR } from './QR'
+import { AlertDialog } from './AlertDialog'
 
 const theme = createTheme({
   palette: {
@@ -33,6 +34,7 @@ const App = () => {
   const [drawerOpen, setDrawerOpen] = useState(false)
   const [qrOpen, setQrOpen] = useState(false)
   const [dialogOpen, setDialogOpen] = useState(false)
+  const [alertOpen, setAlertOpen] = useState(false)
 
   const handleTodo = <
     T extends Todo,
@@ -96,6 +98,8 @@ const App = () => {
     setText('')
   }
 
+  const handleToggleAlert = () => setAlertOpen(!alertOpen)
+
   return (
     <ThemeProvider theme={theme}>
       <GlobalStyles styles={{ body: {margin: 0, padding: 0}}} />
@@ -113,6 +117,11 @@ const App = () => {
         onChange={handleChange}
         onSubmit={handleSubmit}
         onToggleDialog={handleToggleDialog}
+      />
+      <AlertDialog
+        alertOpen={alertOpen}
+        onToggleAlert={handleToggleAlert}
+        onEmpty={handleEmpty}
       />
       <TodoItem todos={todos} filter={filter} onTodo={handleTodo} />
       <ActionButton todos={todos} onEmpty={handleEmpty} />
