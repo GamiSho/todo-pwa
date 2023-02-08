@@ -1,6 +1,7 @@
-import { defineConfig } from 'vite'
-import react from '@vitejs/plugin-react'
-import { VitePWA } from 'vite-plugin-pwa'
+/// <reference types="vitest" />
+import { defineConfig } from 'vite';
+import react from '@vitejs/plugin-react';
+import { VitePWA } from 'vite-plugin-pwa';
 
 export default defineConfig({
   base: './',
@@ -33,8 +34,16 @@ export default defineConfig({
             type: 'image/png',
             purpose: 'maskable',
           },
-        ]
-      }
-    })
+        ],
+      },
+    }),
   ],
-})
+  test: {
+    globals: true,
+    environment: 'jsdom',
+    coverage: {
+      enabled: true,
+      reporter: ['text'],
+    },
+  },
+});
