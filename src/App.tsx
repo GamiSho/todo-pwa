@@ -1,4 +1,6 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
+import localforage from 'localforage'
+import { isTodos } from './lib/isTodos'
 
 import GlobalStyles from '@mui/material/GlobalStyles'
 import { createTheme, ThemeProvider } from '@mui/material/styles'
@@ -11,6 +13,7 @@ import { FormDialog } from './FormDialog'
 import { ActionButton } from './ActionButton'
 import { QR } from './QR'
 import { AlertDialog } from './AlertDialog'
+
 
 const theme = createTheme({
   palette: {
@@ -36,6 +39,16 @@ const App = () => {
   const [qrOpen, setQrOpen] = useState(false)
   const [dialogOpen, setDialogOpen] = useState(false)
   const [alertOpen, setAlertOpen] = useState(false)
+
+  useEffect(() => {
+    localforage
+      .getItem('todo-20200101')
+      .then((values) => isTodos(values) && setTodos(values))
+  }, [])
+
+  useEffect(() => {
+    localforage.setItem('todo-20200101', todos)
+  }, [todos])
 
   const handleTodo = <
     T extends Todo,
