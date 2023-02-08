@@ -13,11 +13,11 @@ export const FormDialog = (props: Props) => {
       }}
     >
       <input
-        type="text"
+        type='text'
         value={props.text}
         onChange={(e) => props.onChange(e)}
       />
-      <input type="submit" value="追加" onSubmit={props.onSubmit} />
+      <input type='submit' value='追加' onSubmit={props.onSubmit} />
     </form>
   )
 }

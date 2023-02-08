@@ -1,14 +1,14 @@
-import { useState } from "react"
+import { useState } from 'react'
 
 import GlobalStyles from '@mui/material/GlobalStyles'
-import { createTheme, ThemeProvider } from "@mui/material/styles"
-import { indigo, pink } from "@mui/material/colors"
+import { createTheme, ThemeProvider } from '@mui/material/styles'
+import { indigo, pink } from '@mui/material/colors'
 
-import { ToolBar } from "./ToolBar"
-import { SideBar } from "./SideBar"
-import { TodoItem } from "./TodoItem"
-import { FormDialog } from "./FormDialog"
-import { ActionButton } from "./ActionButton"
+import { ToolBar } from './ToolBar'
+import { SideBar } from './SideBar'
+import { TodoItem } from './TodoItem'
+import { FormDialog } from './FormDialog'
+import { ActionButton } from './ActionButton'
 
 const theme = createTheme({
   palette: {
@@ -26,9 +26,9 @@ const theme = createTheme({
 })
 
 const App = () => {
-  const [text, setText] = useState("")
+  const [text, setText] = useState('')
   const [todos, setTodos] = useState<Todo[]>([])
-  const [filter, setFilter] = useState<Filter>("all")
+  const [filter, setFilter] = useState<Filter>('all')
   const [drawerOpen, setDrawerOpen] = useState(false)
 
   const handleTodo = <
@@ -62,7 +62,7 @@ const App = () => {
     }
 
     setTodos([newTodo, ...todos])
-    setText("")
+    setText('')
   }
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {

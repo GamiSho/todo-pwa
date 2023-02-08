@@ -11,13 +11,13 @@ type Props = {
 export const TodoItem = (props: Props) => {
   const filterTodos = props.todos.filter((todo) => {
     switch (props.filter) {
-      case "all":
+      case 'all':
         return !todo.removed
-      case "checked":
+      case 'checked':
         return todo.checked && !todo.removed
-      case "unchecked":
+      case 'unchecked':
         return !todo.checked && !todo.removed
-      case "removed":
+      case 'removed':
         return todo.removed
       default:
         return todo
@@ -30,19 +30,19 @@ export const TodoItem = (props: Props) => {
         return (
           <li key={todo.id}>
             <input
-              type="checkbox"
+              type='checkbox'
               disabled={todo.removed}
               checked={todo.checked}
-              onChange={() => props.onTodo(todo, "checked", !todo.checked)}
+              onChange={() => props.onTodo(todo, 'checked', !todo.checked)}
             />
             <input
-              type="text"
+              type='text'
               disabled={todo.checked || todo.removed}
               value={todo.value}
-              onChange={(e) => props.onTodo(todo, "value", e.target.value)}
+              onChange={(e) => props.onTodo(todo, 'value', e.target.value)}
             />
-            <button onClick={() => props.onTodo(todo, "removed",!todo.removed)}>
-              {todo.removed? "復元" : "削除"}
+            <button onClick={() => props.onTodo(todo, 'removed',!todo.removed)}>
+              {todo.removed? '復元' : '削除'}
             </button>
           </li>
         )
