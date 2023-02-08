@@ -9,6 +9,7 @@ import { SideBar } from './SideBar'
 import { TodoItem } from './TodoItem'
 import { FormDialog } from './FormDialog'
 import { ActionButton } from './ActionButton'
+import { QR } from './QR'
 
 const theme = createTheme({
   palette: {
@@ -30,6 +31,8 @@ const App = () => {
   const [todos, setTodos] = useState<Todo[]>([])
   const [filter, setFilter] = useState<Filter>('all')
   const [drawerOpen, setDrawerOpen] = useState(false)
+  const [qrOpen, setQrOpen] = useState(false)
+  const [dialogOpen, setDialogOpen] = useState(false)
 
   const handleTodo = <
     T extends Todo,
@@ -52,7 +55,10 @@ const App = () => {
   }
 
   const handleSubmit = () => {
-    if (!text) return
+    if (!text) {
+      setDialogOpen(false)
+      return
+    }
 
     const newTodo: Todo = {
       value: text,
@@ -63,9 +69,12 @@ const App = () => {
 
     setTodos([newTodo, ...todos])
     setText('')
+    setDialogOpen(false)
   }
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
     setText(e.target.value)
   }
 
@@ -80,19 +89,30 @@ const App = () => {
 
   const handleToggleDrawer = () => setDrawerOpen(!drawerOpen)
 
+  const handleToggleQR = () => setQrOpen(!qrOpen)
+
+  const handleToggleDialog = () => {
+    setDialogOpen(!dialogOpen)
+    setText('')
+  }
+
   return (
     <ThemeProvider theme={theme}>
       <GlobalStyles styles={{ body: {margin: 0, padding: 0}}} />
       <ToolBar filter={filter} onToggleDrawer={handleToggleDrawer} />
       <SideBar
         drawerOpen={drawerOpen}
+        onToggleQR={handleToggleQR}
         onToggleDrawer={handleToggleDrawer}
         onSort={handleSort}
       />
+      <QR open={qrOpen} onClose={handleToggleQR} />
       <FormDialog
         text={text}
+        dialogOpen={dialogOpen}
         onChange={handleChange}
         onSubmit={handleSubmit}
+        onToggleDialog={handleToggleDialog}
       />
       <TodoItem todos={todos} filter={filter} onTodo={handleTodo} />
       <ActionButton todos={todos} onEmpty={handleEmpty} />
