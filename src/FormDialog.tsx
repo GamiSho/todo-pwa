@@ -26,6 +26,7 @@ export const FormDialog = (props: Props) => {
           <TextField
             aria-label="todo-input"
             variant="standard"
+            inputProps={{ 'data-testid': 'form-todo' }}
             style={{
               width: '100%',
               fontSize: '16px',

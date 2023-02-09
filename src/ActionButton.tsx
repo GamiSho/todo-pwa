@@ -25,7 +25,8 @@ export const ActionButton = (props: Props) => {
     <>
       {props.filter === 'removed' ? (
         <FabButton
-          color='secondary'
+          aria-label="fab-delete-button"
+          color="secondary"
           onClick={props.onToggleAlert}
           disabled={!removed || props.alertOpen}
         >
@@ -33,7 +34,8 @@ export const ActionButton = (props: Props) => {
         </FabButton>
       ) : (
         <FabButton
-          color='secondary'
+          aria-label="fab-add-button"
+          color="secondary"
           onClick={props.onToggleDialog}
           disabled={props.filter === 'checked' || props.dialogOpen}
         >
